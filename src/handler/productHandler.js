@@ -46,6 +46,7 @@ const productHandler = {
         id = nanoid(),
         createdAt = Math.floor(Date.now() / 1000),
         updatedAt = createdAt;
+      console.log(id);
       const newProduct = { id, name, quantity, createdAt, updatedAt };
       const fields = await database.insert(newProduct);
       const data = {

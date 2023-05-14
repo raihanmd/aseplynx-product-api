@@ -30,7 +30,7 @@ const database = {
   async insert({ id, name, quantity, createdAt, updatedAt }) {
     return await con
       .promise()
-      .query(`INSERT INTO products (id, name, quantity, created_at, updated_at) VALUES ('${id}', '${name}', '${quantity}', '${createdAt}', '${updatedAt}')`)
+      .query(`INSERT INTO products (id, name, quantity, created_at, updated_at) VALUES ('${id}', '${name}', ${quantity}, ${createdAt}, ${updatedAt})`)
       .then(([fileds]) => fileds)
       .catch((err) => {
         throw err;
