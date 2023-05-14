@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-const blogRoutes = require("./routes/blogRoutes");
+const blogRoutes = require("./routes/productRoutes");
 
 app.use(bodyParser.json());
 app.use(
@@ -16,10 +16,10 @@ app.use(cors());
 
 app.get("/", async (req, res) => {
   res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-  res.status(200).json({ message: "Halo! selamat datang di web API ku!", endpoint: "/blog : to get all blogs" });
+  res.status(200).json({ message: "Halo! selamat datang di web API ku!", endpoint: "/product : to get all product" });
 });
 
-app.use("/blog", blogRoutes);
+app.use("/product", blogRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

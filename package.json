@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node ./src/index",
+    "dev": "nodemon ./src/index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "vercel-build": "echo hello"
   },

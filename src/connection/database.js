@@ -12,7 +12,7 @@ const database = {
   async selectAll() {
     return await con
       .promise()
-      .query(`SELECT * FROM blog`)
+      .query(`SELECT * FROM products`)
       .then(([rows]) => rows)
       .catch((err) => {
         throw err;

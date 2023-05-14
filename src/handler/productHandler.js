@@ -5,8 +5,8 @@ const { customAlphabet } = require("nanoid");
 require("dotenv").config();
 
 const nanoid = customAlphabet("1234567890", 10);
-const blogHandler = {
-  async selectAllBlogs(res) {
+const productHandler = {
+  async selectAllProduct(res) {
     try {
       const blogs = await database.selectAll();
       response(200, blogs, "Data Berhasil diambil", res);
@@ -14,7 +14,7 @@ const blogHandler = {
       response(500, "Internal Server Error.", err.message, res);
     }
   },
-  async selectBlogBySlug(res, slug) {
+  async selectBlogByID(res, slug) {
     try {
       const blogs = await database.select(slug);
       if (blogs.length === 0) {
@@ -28,7 +28,7 @@ const blogHandler = {
       response(err?.statusCode || 500, err?.payload || "Internal server error.", err.message, res);
     }
   },
-  async insertBlog(res, req) {
+  async insertProduct(res, req) {
     try {
       if (!req.token) {
         const err = new Error(`Hanya owner yang dapat melakuakn aksi POST.`);
@@ -82,4 +82,4 @@ const blogHandler = {
   },
 };
 
-module.exports = { blogHandler };
+module.exports = { productHandler };
