@@ -16,10 +16,21 @@ app.use(cors());
 
 app.get("/", async (req, res) => {
   res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-  res.status(200).json({ message: "Halo! selamat datang di web API ku!", endpoint: "/product : to get all product" });
+  res.status(200).json({
+    message: "Hello! welcome to Squidward's Tiki Land 🎶🎵",
+    endpoint: {
+      GET: {
+        "/products": "GET all products.",
+        "/products/:id": "GET products by ID.",
+      },
+      POST: {
+        "/products": "POST products.",
+      },
+    },
+  });
 });
 
-app.use("/product", blogRoutes);
+app.use("/products", blogRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

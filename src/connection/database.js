@@ -18,19 +18,19 @@ const database = {
         throw err;
       });
   },
-  async select(slug) {
+  async select(id) {
     return await con
       .promise()
-      .query(`SELECT * FROM blog WHERE slug = '${slug}'`)
+      .query(`SELECT * FROM products WHERE id = '${id}'`)
       .then(([rows]) => rows)
       .catch((err) => {
         throw err;
       });
   },
-  async insert({ id, title, slug, author, body, createdAt }) {
+  async insert({ id, name, quantity, createdAt, updatedAt }) {
     return await con
       .promise()
-      .query(`INSERT INTO blog (id, title, slug, author, body, created_at) VALUES ('${id}', '${title}', '${slug}', '${author}', '${body}', '${createdAt}')`)
+      .query(`INSERT INTO blog (id, name, quantity, created_at, updated_at) VALUES ('${id}', '${name}', '${quantity}', '${createdAt}', '${updatedAt}')`)
       .then(([fileds]) => fileds)
       .catch((err) => {
         throw err;

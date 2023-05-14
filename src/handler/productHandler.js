@@ -14,11 +14,11 @@ const productHandler = {
       response(500, "Internal Server Error.", err.message, res);
     }
   },
-  async selectBlogByID(res, slug) {
+  async selectBlogByID(res, id) {
     try {
-      const blogs = await database.select(slug);
+      const blogs = await database.select(id);
       if (blogs.length === 0) {
-        const err = new Error(`Blog dengan slug ${slug} tidak ditemukan.`);
+        const err = new Error(`Product dengan id ${id} tidak ditemukan.`);
         err.statusCode = 404;
         err.payload = "Blog not found.";
         throw err;
@@ -42,12 +42,12 @@ const productHandler = {
         err.payload = "Unauthorized";
         throw err;
       }
-      const { title, author, body } = req,
+      const { name, quantity } = req,
         id = nanoid(),
-        slug = slugify(title, { lower: true });
-      createdAt = Math.floor(Date.now() / 1000);
-      const newBlog = { id, title, slug, author, body, createdAt };
-      const fields = await database.insert(newBlog);
+        createdAt = Math.floor(Date.now() / 1000),
+        updatedAt = createdAt;
+      const newProduct = { id, name, quantity, createdAt, updatedAt };
+      const fields = await database.insert(newProduct);
       const data = {
         isSucceed: fields.affectedRows,
       };
