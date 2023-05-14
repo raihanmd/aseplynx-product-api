@@ -22,7 +22,7 @@ const database = {
     return await con
       .promise()
       .query(`SELECT * FROM products WHERE id = '${id}'`)
-      .then(([rows]) => rows)
+      .then(([rows]) => rows[0])
       .catch((err) => {
         throw err;
       });
